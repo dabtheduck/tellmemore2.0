@@ -1,0 +1,19 @@
+//json//
+[
+  {
+    "name": "How would you describe your personality?",
+    "category": "✨About You✨"
+  },
+  {
+    "name": "What do you do for fun?",
+    "category": "🥳Fun Stuff🥳"
+  },
+  {
+    "name": "What’s something you wish the other person would stop doing?",
+    "category": "😤Burning Bridges😤"
+  },
+  {
+    "name": "What’s a lesson you’ve been learning recently?",
+    "category": "🌳Introspection🌳"
+  }
+]
