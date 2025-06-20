@@ -43,36 +43,25 @@
 	<body>
 		<h3>Question Generator</h3>
 		<p> Boop the button to generate a question! </p>
-		<button id="randomButton">Boop</button>
 		<button onclick="getRandomItem()">Get Random Item</button>
-  <p id="output"></p>
+  		<p id="output"></p>
 
   <script>
     let items = [];
 
     // Load the JSON file when the page loads
-    fetch('items.json')
-      .then(response => response.json())
-      .then(data => {
-        items = data;
-      })
-      .catch(error => {
-        console.error('Error loading JSON:', error);
-      });
-
-    // Function to pick and display a random item
     function getRandomItem() {
-      if (items.length === 0) {
-        document.getElementById('output').textContent = "Items not loaded yet.";
-        return;
-      }
+  if (items.length === 0) {
+    document.getElementById('output').textContent = "Items not loaded yet.";
+    return;
+  }
 
-      const randomIndex = Math.floor(Math.random() * items.length);
-      const randomItem = items[randomIndex];
+  const randomIndex = Math.floor(Math.random() * items.length);
+  const randomItem = items[randomIndex];
 
-      document.getElementById('output').textContent = `You got: ${randomItem}`;
-    }
-
+  document.getElementById('output').innerHTML =
+    `<span class="category">${randomItem.category}</span><br>${randomItem.name}`;
+}
 		</script>
 	</body>
 </html>
