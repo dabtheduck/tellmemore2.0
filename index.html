@@ -37,6 +37,20 @@
     let items = [];
 
     // Load the JSON file when the page loads
+	fetch('items.json')
+    .then(response => {
+      if (!response.ok) throw new Error("HTTP error " + response.status);
+      return response.json();
+    })
+    .then(data => {
+      items = data;
+    })
+    .catch(error => {
+      console.error('Error loading JSON:', error);
+      document.getElementById('output').textContent = "Failed to load questions.";
+    });
+	  
+// Random item function
     function getRandomItem() {
   if (items.length === 0) {
     document.getElementById('output').textContent = "Items not loaded yet.";
@@ -47,8 +61,8 @@
   const randomItem = items[randomIndex];
 
   document.getElementById('output').innerHTML =
-    `<span class="category">${randomItem.category}</span><br>${randomItem.name}`;
-}
+  `<span class="category">${randomItem.category}</span><br>${randomItem.name}`;
+
 		</script>
 	</body>
 </html>
