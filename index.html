@@ -5,57 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Random Question Generator</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-    #question { font-size: 1.5em; margin: 20px 0; }
-    #category { font-style: italic; color: gray; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #question {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+    #category {
+      font-style: italic;
+      color: gray;
+    }
+    button {
+      font-size: 1em;
+      padding: 10px 15px;
+      margin: 10px 5px;
+    }
+    .category-button {
+      border: 1px solid #aaa;
+      background-color: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .category-button.selected {
+      background-color: #4CAF50;
+      color: white;
+      border-color: #4CAF50;
+    }
+    .category-container {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
   <h1>Random Question Generator</h1>
+
+  <div class="category-container" id="categoryButtons">
+    <!-- Buttons will be added here -->
+  </div>
+
   <div id="question">Click the button to get a question</div>
   <div id="category"></div>
+
   <button onclick="selectRandomQuestion()">Get Random Question</button>
   <button onclick="resetQuestions()">Reset</button>
 
- <script>
-  let allQuestions = [];
-  let remainingQuestions = [];
+  <script>
+    let allQuestions = [];
+    let remainingQuestions = [];
+    let selectedCategories = [];
 
-  // Load questions from the JSON file
-  fetch('questions.json')
-    .then(response => response.json())
-    .then(data => {
-      allQuestions = data;
-      remainingQuestions = [...allQuestions]; // make a copy
-    })
-    .catch(error => {
-      console.error("Error loading questions:", error);
-      document.getElementById('question').textContent = "Failed to load questions.";
-    });
+    fetch('questions.json')
+      .then(response => response.json())
+      .then(data => {
+        allQuestions = data;
+        renderCategoryButtons();
+        resetQuestions();
+      })
+      .catch(error => {
+        console.error("Error loading questions:", error);
+        document.getElementById('question').textContent = "Failed to load questions.";
+      });
 
-  function selectRandomQuestion() {
-    if (remainingQuestions.length === 0) {
-      document.getElementById('question').textContent = "🎉 You've seen all the questions!";
-      document.getElementById('category').textContent = "";
-      return;
+    function renderCategoryButtons() {
+      const categories = [...new Set(allQuestions.map(q => q.category))];
+      const container = document.getElementById('categoryButtons');
+      container.innerHTML = '';
+
+      categories.forEach(category => {
+        const button = document.createElement('button');
+        button.textContent = category;
+        button.classList.add('category-button');
+        button.onclick = () => toggleCategory(category, button);
+        container.appendChild(button);
+      });
     }
 
-    const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
-    const question = remainingQuestions.splice(randomIndex, 1)[0]; // remove from remaining
+    function toggleCategory(category, buttonElement) {
+      const index = selectedCategories.indexOf(category);
+      if (index === -1) {
+        selectedCategories.push(category);
+        buttonElement.classList.add('selected');
+      } else {
+        selectedCategories.splice(index, 1);
+        buttonElement.classList.remove('selected');
+      }
+      resetQuestions();
+    }
 
-    document.getElementById('question').textContent = question.name;
-    document.getElementById('category').textContent = `Category: ${question.category}`;
-  }
+    function resetQuestions() {
+      if (selectedCategories.length === 0) {
+        remainingQuestions = [...allQuestions]; // No filter = show all
+      } else {
+        remainingQuestions = allQuestions.filter(q => selectedCategories.includes(q.category));
+      }
+      document.getElementById('question').textContent = "Click the button to get a question";
+      document.getElementById('category').textContent = "";
+    }
 
-   function resetQuestions() {
-  remainingQuestions = [...allQuestions];
-  document.getElementById('question').textContent = "Click the button to get a question";
-  document.getElementById('category').textContent = "";
-}
+    function selectRandomQuestion() {
+      if (remainingQuestions.length === 0) {
+        document.getElementById('question').textContent = "🎉 You've seen all the questions in the selected categories!";
+        document.getElementById('category').textContent = "";
+        return;
+      }
 
-</script>
+      const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
+      const question = remainingQuestions.splice(randomIndex, 1)[0];
 
+      document.getElementById('question').textContent = question.name;
+      document.getElementById('category').textContent = `Category: ${question.category}`;
+    }
+  </script>
 
 </body>
 </html>
