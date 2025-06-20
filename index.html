@@ -37,18 +37,19 @@
     let items = [];
 
     // Load the JSON file when the page loads
-	fetch('items.json')
-    .then(response => {
-      if (!response.ok) throw new Error("HTTP error " + response.status);
-      return response.json();
-    })
-    .then(data => {
-      items = data;
-    })
-    .catch(error => {
-      console.error('Error loading JSON:', error);
-      document.getElementById('output').textContent = "Failed to load questions.";
-    });
+fetch('items.json')
+  .then(response => {
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+    return response.json();
+  })
+  .then(data => {
+    items = data;
+    console.log("Items loaded:", items); // Helpful for debugging
+  })
+  .catch(error => {
+    console.error('Error loading JSON:', error);
+    document.getElementById('output').textContent = "Failed to load JSON.";
+  });
 	  
 // Random item function
     function getRandomItem() {
