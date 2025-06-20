@@ -16,32 +16,46 @@
   <div id="question">Click the button to get a question</div>
   <div id="category"></div>
   <button onclick="selectRandomQuestion()">Get Random Question</button>
+  <button onclick="resetQuestions()">Reset</button>
 
-  <script>
-    let questions = [];
+ <script>
+  let allQuestions = [];
+  let remainingQuestions = [];
 
-    // Load the JSON file
-    fetch('questions.json')
-      .then(response => response.json())
-      .then(data => {
-        questions = data;
-      })
-      .catch(error => {
-        console.error("Error loading questions:", error);
-        document.getElementById('question').textContent = "Failed to load questions.";
-      });
+  // Load questions from the JSON file
+  fetch('questions.json')
+    .then(response => response.json())
+    .then(data => {
+      allQuestions = data;
+      remainingQuestions = [...allQuestions]; // make a copy
+    })
+    .catch(error => {
+      console.error("Error loading questions:", error);
+      document.getElementById('question').textContent = "Failed to load questions.";
+    });
 
-    function selectRandomQuestion() {
-      if (questions.length === 0) {
-        document.getElementById('question').textContent = "Questions not loaded yet.";
-        return;
-      }
-      const randomIndex = Math.floor(Math.random() * questions.length);
-      const question = questions[randomIndex];
-      document.getElementById('question').textContent = question.name;
-      document.getElementById('category').textContent = `Category: ${question.category}`;
+  function selectRandomQuestion() {
+    if (remainingQuestions.length === 0) {
+      document.getElementById('question').textContent = "🎉 You've seen all the questions!";
+      document.getElementById('category').textContent = "";
+      return;
     }
-  </script>
+
+    const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
+    const question = remainingQuestions.splice(randomIndex, 1)[0]; // remove from remaining
+
+    document.getElementById('question').textContent = question.name;
+    document.getElementById('category').textContent = `Category: ${question.category}`;
+  }
+
+   function resetQuestions() {
+  remainingQuestions = [...allQuestions];
+  document.getElementById('question').textContent = "Click the button to get a question";
+  document.getElementById('category').textContent = "";
+}
+
+</script>
+
 
 </body>
 </html>
