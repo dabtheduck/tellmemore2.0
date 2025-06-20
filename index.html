@@ -1,70 +1,47 @@
-<!doctype html>
-<html lang="en-US">
-	<head> 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Question Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    #question { font-size: 1.5em; margin: 20px 0; }
+    #category { font-style: italic; color: gray; }
+  </style>
+</head>
+<body>
 
-		<link
-			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;1,200&display=swap"
-			rel="stylesheet" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Tell Me More</title>
-
-		<style>
-			body {
-				font-family: Josefin Sans, sans-serif; 
-				text-align: center;
-				margin: 50px;
-			}
-
-			#output {
-				margin-top: 20px; 
-				font-size: 1rem;
-			}	
-			.category {
-				font-weight: bold;
-				color: #333;
-			}
-		</style>
-	</head>
-	<body>
-		<h3>Question Generator</h3>
-		<p> Boop the button to generate a question! </p>
-		<button onclick="getRandomItem()">Get Random Item</button>
-  		<p id="output"></p>
+  <h1>Random Question Generator</h1>
+  <div id="question">Click the button to get a question</div>
+  <div id="category"></div>
+  <button onclick="selectRandomQuestion()">Get Random Question</button>
 
   <script>
-    let items = [];
+    let questions = [];
 
-    // Load the JSON file when the page loads
-fetch('items.json')
-  .then(response => {
-    if (!response.ok) throw new Error("HTTP error " + response.status);
-    return response.json();
-  })
-  .then(data => {
-    items = data;
-    console.log("Items loaded:", items); // Helpful for debugging
-  })
-  .catch(error => {
-    console.error('Error loading JSON:', error);
-    document.getElementById('output').textContent = "Failed to load JSON.";
-  });
-	  
-// Random item function
-    function getRandomItem() {
-  if (items.length === 0) {
-    document.getElementById('output').textContent = "Items not loaded yet.";
-    return;
-  }
+    // Load the JSON file
+    fetch('questions.json')
+      .then(response => response.json())
+      .then(data => {
+        questions = data;
+      })
+      .catch(error => {
+        console.error("Error loading questions:", error);
+        document.getElementById('question').textContent = "Failed to load questions.";
+      });
 
-  const randomIndex = Math.floor(Math.random() * items.length);
-  const randomItem = items[randomIndex];
+    function selectRandomQuestion() {
+      if (questions.length === 0) {
+        document.getElementById('question').textContent = "Questions not loaded yet.";
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * questions.length);
+      const question = questions[randomIndex];
+      document.getElementById('question').textContent = question.name;
+      document.getElementById('category').textContent = `Category: ${question.category}`;
+    }
+  </script>
 
-  document.getElementById('output').innerHTML =
-  `<span class="category">${randomItem.category}</span><br>${randomItem.name}`;
-
-		</script>
-	</body>
+</body>
 </html>
-				
