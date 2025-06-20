@@ -1,18 +1,47 @@
 [
-  {
-    "name": "How would you describe your personality?",
-    "category": "✨About You✨"
-  },
-  {
-    "name": "What do you do for fun?",
-    "category": "🥳Fun Stuff🥳"
-  },
-  {
-    "name": "What’s something you wish the other person would stop doing?",
-    "category": "😤Burning Bridges😤"
-  },
-  {
-    "name": "What’s a lesson you’ve been learning recently?",
-    "category": "🌳Introspection🌳"
-  }
+        { name: "How would you describe your personality?", category: "✨About You✨" }, 
+				{ name: "How do you handle stress in life?", category: "✨About You✨" }, 
+				{ name: "What makes you feel fulfilled?", category: "✨About You✨" }, 
+				{ name: "What is something that makes you happy?", category: "✨About You✨" }, 
+				{ name: "Are you a picky eater? If yes, what foods do you hate?", category: "✨About You✨" },
+				{ name: "What is your motivation in life?", category: "✨About You✨" },  
+				{ name: "What are your pet peeves?", category: "✨About You✨" },  
+				{ name: "What are some goals you hope to achieve this year?", category: "✨About You✨" },  
+				{ name: "What are you passionate about?", category: "✨About You✨" },  
+				{ name: "What is something you wish people would know about you?", category: "✨About You✨" }, 
+				{ name: "What is a common assumption people have about you?", category: "✨About You✨" }, 
+				{ name: "What is your love language?", category: "✨About You✨" },  
+				{ name: "How do you like to destress after a long day at work?", category: "✨About You✨" },  
+				{ name: "Are you a texter or a face-to-face type of person?", category: "✨About You✨" },  
+				{ name: "What do you do for fun?", category: "🥳Fun Stuff🥳" },  
+				{ name: "What’s the best prank you’ve played on someone before?", category: "🥳Fun Stuff🥳" },  
+				{ name: "How would an ideal birthday look like to you?", category: "🥳Fun Stuff🥳" },  
+				{ name: "Who would you say are your core group of friends? How did you guys meet?", category: "🤩Relationships🤩" },  
+				{ name: "Are you a low-maintenance or high-maintenance relationship type of person?", category: "🤩Relationships🤩" },  
+				{ name: "What was the most touching thing someone has done for you?", category: "🤩Relationships🤩" },
+				{ name: "Wild Card: Ask each other any question you’d like to. If the question you ask is unanswered: you owe the other person a meal 🤭", category: "🤩Relationships🤩" },
+				{ name: "What’s your first impression of each other?", category: "😤Burning Bridges😤" },  
+				{ name: "What’s something you wish the other person would stop doing?", category: "😤Burning Bridges😤" },  
+				{ name: "Who’s more likely to cry during a movie?", category: "😤Burning Bridges😤" },
+				{ name: "Who’s more likely to lose their phone or wallet?", category: "😤Burning Bridges😤" },
+				{ name: "Who’s more likely to get lost?", category: "😤Burning Bridges😤" },
+				{ name: "Who’s more likely to forget an important appointment?", category: "😤Burning Bridges😤" },
+				{ name: "Who’s more likely to get hangry?", category: "😤Burning Bridges😤" },
+				{ name: "What is something that you’re thankful happened to you?", category: "🌳Introspection🌳" },  
+				{ name: "What is something you hope to grow in?", category: "🌳Introspection🌳" },  
+				{ name: "What are some skills you wish you had?", category: "🌳Introspection🌳" },  
+				{ name: "What would you never want to change about yourself?", category: "🌳Introspection🌳" },  
+				{ name: "What’s a lesson you’ve been learning recently?", category: "🌳Introspection🌳" }, 
+				{ name: "List 5 people you’re thankful for.", category: "🌳Introspection🌳" }, 
+				{ name: "What made you believe/not believe in God?", category: "😶Religion😶" },  
+				{ name: "What are some factors that motivates you to continue in your faith?", category: "😶Religion😶" },  
+				{ name: "How did you start serving in church?", category: "😶Religion😶" },  
+				{ name: "What is a belief/experience/lesson that has stuck with you all these years?", category: "😶Religion😶" },  
+				{ name: "What name of God means the most to you in this season of life?", category: "😶Religion😶" },  
+				{ name: "Have you shared the Gospel to others before? What was it like?", category: "😶Religion😶" },  
+				{ name: "What has your church journey been like?", category: "😶Religion😶" },  
+				{ name: "What is/was a Christian concept that you struggle to understand?", category: "😶Religion😶" },  
+				{ name: "Do you believe in ghosts? Why or why not?", category: "😶Religion😶" }, 
+				{ name: "Do you believe in evolution? Why or why not?", category: "😶Religion😶" },   
+				{ name: "What do you think are the core beliefs of the Christian faith? ", category: "😶Religion😶" }
 ]
