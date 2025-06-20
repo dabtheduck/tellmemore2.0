@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -112,24 +112,7 @@
       } else {
         remainingQuestions = allQuestions.filter(q => selectedCategories.includes(q.category));
       }
+      document.getElementById('question').textContent = "Pick the categories you want above. Otherwise, a random question will be picked from any of the above categories! When you're ready, boop the button. Have fun!";
       document.getElementById('question').textContent = "Pick the categories you want above. Otherwise, a random question will be picked from any of the above categories. When you're ready, boop the button to start the fun.";
       document.getElementById('category').textContent = "";
     }
-
-    function selectRandomQuestion() {
-      if (remainingQuestions.length === 0) {
-        document.getElementById('question').textContent = "🎉 You've seen all the questions in the selected categories!";
-        document.getElementById('category').textContent = "";
-        return;
-      }
-
-      const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
-      const question = remainingQuestions.splice(randomIndex, 1)[0];
-
-      document.getElementById('question').textContent = question.name;
-      document.getElementById('category').textContent = `Category: ${question.category}`;
-    }
-  </script>
-
-</body>
-</html>
